@@ -1,6 +1,7 @@
 import requests
-import json
+import xml.etree.ElementTree as ET
 
-URL = "https://api.github.com/users/mitohato/events"
-r = requests.get(URL)
-print(r.text)
+URL = "https://github.com/users/mitohato/contributions"
+response = requests.get(URL)
+root = ET.fromstring(response.text)
+print(root.tag)
