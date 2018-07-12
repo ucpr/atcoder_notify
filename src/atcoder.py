@@ -15,10 +15,16 @@ def save(data):
 
 def get_no1(data):
     """ 前回から最もACした人を返す """
+    res = [None, 0]
     with open("ac_count.json", "r") as f:
         last_time = json.load(f)  # 前回の結果をload
-    for i in data.items():
-        pass
+    for i in data.items():  # i -> ("name", count)
+        print(i)
+        print(i[1] - last_time[i[0]])
+        if i[1] - last_time[i[0]] > res[1]:
+            res[0] = i[0]  # name
+            res[1] = i[1] - last_time[i[0]]  # AC count
+    return res
 
 
 def main():
