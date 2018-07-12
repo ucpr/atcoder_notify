@@ -15,7 +15,6 @@ def get_xml(getURL):
 
 def get_date():
     yesterday = date.today() - timedelta(days = 1)
-    print (yesterday)
     return yesterday.isoformat()
 
 def get_commits_number(root, yesterday):
@@ -24,22 +23,30 @@ def get_commits_number(root, yesterday):
         if e.get('data-date') in yesterday:
             commits = e.get('data-count')
 
-    print (commits)
     return commits
 
 def json_read():
     with open('users.json', 'r') as f:
         data = json.load(f)
-        print(data)
+
     return data
 
-if __name__ == '__main__':
+def get_commit():
     j_data = json_read()
     users = j_data["users"]["github"]
-    URL = 'https://github.com/users/'
 
-    root = get_xml(URL)
     date = get_date()
-    commits = get_commits_number(root, date)
+    commits = {}
+    sorted_value = []
 
-    print (commits)
+    for name in users:
+        URL = 'https://github.com/users/' + name + '/contributions'
+        root = get_xml(URL)
+        commits[name] = get_commits_number(root, date)
+
+    sorted_value = sorted(commits.items(), key=lambda x: x[1])
+
+    print (sorted_value[-1])
+    return (sorted_value[-1])
+
+get_commit()
