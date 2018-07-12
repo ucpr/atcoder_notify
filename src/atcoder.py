@@ -12,6 +12,13 @@ def save(data):
         print("save -> ac_count.json")
 
 
+def get_no1(data):
+    with open("ac_count.json", "r") as f:
+        last_time = json.load(f)  # 前回の結果をload
+    for i in data.items():
+        pass
+
+
 def main():
     result = dict()
     r = requests.get(URL)
@@ -20,6 +27,7 @@ def main():
         result[i["user_id"]] = i["problem_count"]
 
     save(result)  # save ac_count
+    print(get_no1(result))
 
 
 if __name__ == "__main__":
