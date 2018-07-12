@@ -7,12 +7,14 @@ with open("users.json", "r") as f:
 
 
 def save(data):
+    """ 結果をac_count.jsonに結果を保存させる """
     with open("ac_count.json", "w") as f:
         json.dump(data, f)
         print("save -> ac_count.json")
 
 
 def get_no1(data):
+    """ 前回から最もACした人を返す """
     with open("ac_count.json", "r") as f:
         last_time = json.load(f)  # 前回の結果をload
     for i in data.items():
