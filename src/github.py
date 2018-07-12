@@ -8,14 +8,17 @@ proxies = {
     'https': 'http://cproxy.okinawa-ct.ac.jp:8080',
 }
 
+
 def get_xml(getURL):
     response = requests.get(getURL, proxies=proxies)
     root = ET.fromstring(response.text)
     return root
 
+
 def get_date():
     yesterday = date.today() - timedelta(days = 1)
     return yesterday.isoformat()
+
 
 def get_commits_number(root, yesterday):
     commits = 0
@@ -25,11 +28,13 @@ def get_commits_number(root, yesterday):
 
     return commits
 
+
 def json_read():
     with open('users.json', 'r') as f:
         data = json.load(f)
 
     return data
+
 
 def get_commit():
     j_data = json_read()
