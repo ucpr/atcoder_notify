@@ -25,7 +25,7 @@ def get_no1(data):
     return res
 
 
-def main():
+def getAC():
     result = dict()
     r = requests.get(URL)
     ac_data = json.loads(r.text)
@@ -33,8 +33,8 @@ def main():
         result[i["user_id"]] = i["problem_count"]
 
     save(result)  # save ac_count
-    print(get_no1(result))
+    return get_no1(result)
 
 
 if __name__ == "__main__":
-    main()
+    print(getAC())
