@@ -49,4 +49,6 @@ def get_commit():
     print (sorted_value[-1])
     return (sorted_value[-1])
 
-get_commit()
+
+if __name__ == "__main__":
+    get_commit()
