@@ -18,10 +18,10 @@ def get_no1(data):
     res = [None, 0]
     with open("ac_count.json", "r") as f:
         last_time = json.load(f)  # 前回の結果をload
-    for i in data.items():  # i -> ("name", count)
-        if i[1] - last_time[i[0]] > res[1]:
-            res[0] = i[0]  # name
-            res[1] = i[1] - last_time[i[0]]  # AC count
+    for d in data.items():  # i -> ("name", count)
+        if d[1] - last_time[d[0]] > res[1]:
+            res[0] = d[0]  # name
+            res[1] = d[1] - last_time[d[0]]  # AC count
     return res
 
 
