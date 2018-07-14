@@ -5,6 +5,7 @@ import json
 
 with open('users.json', 'r') as f:
     users = json.load(f)
+
 proxies = {
     'http': 'http://cproxy.okinawa-ct.ac.jp:8080',
     'https': 'http://cproxy.okinawa-ct.ac.jp:8080',
@@ -41,10 +42,10 @@ def get_commit():
         root = get_xml(URL)
         commits[name] = get_commits_number(root, date)
 
-    sorted_value = sorted(commits.items(), key=lambda x: x[1])
+    sorted_value = sorted(commits.items(), key=lambda x: x[1])  # valueで降順ソート
 
-    print (sorted_value[-1])
-    return (sorted_value[-1])
+    print(sorted_value[-1])
+    return sorted_value[-1]
 
 
 if __name__ == "__main__":
