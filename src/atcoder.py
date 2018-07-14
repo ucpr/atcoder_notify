@@ -31,8 +31,7 @@ def getAC():
     r = requests.get(URL) 
     ac_data = json.loads(r.text)
     for i in filter(lambda x: x["user_id"] in users, ac_data):
-        # usersの中に入ってる人だけを抽出
-        result[i["user_id"]] = i["problem_count"]
+        result[i["user_id"]] = i["problem_count"]  # usersの中に入ってる人だけを抽出
 
     save(result)  # save ac_count
     return get_no1(result)
