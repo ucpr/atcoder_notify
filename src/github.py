@@ -37,10 +37,10 @@ def get_commit():
     commits = {}
     sorted_value = []
 
-    for name in users:
-        URL = f'https://github.com/users/{name}/contributions'
+    for user in users:
+        URL = f'https://github.com/users/{user}/contributions'
         root = get_xml(URL)
-        commits[name] = get_commits_number(root, date)
+        commits[user] = get_commits_number(root, date)
 
     sorted_value = sorted(commits.items(), key=lambda x: x[1])  # valueで降順ソート
 
